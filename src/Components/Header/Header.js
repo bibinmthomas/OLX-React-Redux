@@ -1,5 +1,5 @@
 import React,{useContext} from 'react';
-import { useHistory } from 'react-router-dom'; 
+import { Link, useHistory } from 'react-router-dom'; 
 
 import './Header.css';
 import OlxLogo from '../../assets/OlxLogo';
@@ -15,9 +15,11 @@ function Header() {
   return (
     <div className="headerParentDiv">
       <div className="headerChildDiv">
+        <Link to="/">
         <div className="brandName">
           <OlxLogo></OlxLogo>
         </div>
+        </Link>
         <div className="placeSearch">
           <Search></Search>
           <input type="text" />
@@ -38,11 +40,12 @@ function Header() {
           <span> ENGLISH </span>
           <Arrow></Arrow>
         </div>
+          <Link to="/login">
         <div className="loginPage">
           <span>{user? `Welcome ${user.displayName}` : <span >Login</span>}</span>
           <hr />
-
         </div>
+          </Link>
           { user && <span onClick={()=>{
             firebase.auth().signOut()
             history.push('/login')
@@ -50,10 +53,12 @@ function Header() {
 
         <div className="sellMenu">
           <SellButton></SellButton>
+          <Link to="/create">
           <div className="sellMenuContent">
             <SellButtonPlus></SellButtonPlus>
             <span>SELL</span>
           </div>
+          </Link>
         </div>
       </div>
     </div>
